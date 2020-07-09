@@ -1,0 +1,31 @@
+name1 = 'larry'
+health1 = 60
+name2 = 'curly'
+health2 = health1
+health1 = 30
+puts "#{name1.capitalize} has a health of #{health1}."
+puts "#{name2.upcase} has a health of #{health2}."
+name3 = 'moe'
+health3 = 100
+string = "#{name3.upcase} has a health of #{health3}."
+puts string.center(50, '*')
+name4 = 'shemp'
+health4 = 90
+puts name4.capitalize.ljust(30, '.') + ' '+ health4.to_s + ' health'
+
+puts 123.to_s.reverse
+puts 123.to_s.reverse.to_i
+
+#Vocabulary Quiz
+#1. In the following line of code, capitalize is a method called on the object named name and assigned to the string named text.
+#text = "#{name.capitalize} has a health of #{health}."
+#
+#2. In the case of the line of code below, center is a method that takes two parameters.
+#puts text.center(50, '*')
+#
+#
+
+current_day = Time.new.strftime('%A'' ''%m''/''%d''/''%Y')
+current_time = Time.new.strftime('%I'':''%M''%p')
+puts "The game started on #{current_day} at #{current_time}."
+
