@@ -1,29 +1,41 @@
 require_relative 'player'
+require_relative 'die'
 
 class Game
-    attr_reader :title
+    attr_accessor :title
 
     def initialize(title)
-    @title = title.capitalize
-    @players = []
+        @title = title.capitalize
+        @players = []
     end
 
-    def add_player(new_player)
-        @players.push(new_player)
+    def add_player(a_player)
+        @players.push(a_player)
     end
 
     def play
+        
         puts "There are #{@players.size} players in #{@title}: \n"
         @players.each do |player|
             puts player.to_s
         end
 
         @players.each do |player|
-            player.blam
-            player.w00t
-            player.w00t
+            die = Die.new
+            @number_rolled = die.roll
+            case die.roll
+            when 1..2
+              puts "#{player.name} rolled a #{@number_rolled}."
+              player.blam
+            when 3..4
+              puts "#{player.name} rolled a #{@number_rolled}."
+              puts "#{player.name} was skipped this turn."
+            else
+              puts "#{player.name} rolled a #{@number_rolled}."
+              player.w00t
+            end
             puts player
-        end
+          end
     end
 
 
