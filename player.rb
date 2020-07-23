@@ -1,20 +1,21 @@
 class Player
-
     attr_accessor :name, :health, :score
     
-    def initialize(name, health=100)
+    def initialize(name, health=rand(80..100))
     @name = name.capitalize
     @health = health
     end
 
     def w00t
-        @health += 15
-        puts "#{@name} got w00ted!"
+        random_w00t = rand(1..15)
+        @health += random_w00t
+        puts "#{@name} got w00ted for #{random_w00t}!"
     end
 
     def blam
-        @health -=10
-        puts "#{@name} got blammed!"
+        random_blam = rand(10)
+        @health -= random_blam
+        puts "#{@name} got blammed for #{random_blam}!"
     end
 
     def score
