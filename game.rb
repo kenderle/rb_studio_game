@@ -1,6 +1,6 @@
 require_relative 'player'
 require_relative 'game_turn'
-
+require_relative 'treasure_trove'
 
 class Game
     attr_accessor :title
@@ -20,6 +20,10 @@ class Game
         @players.each do |player|
             puts player.to_s
         end
+
+        treasures = TreasureTrove::TREASURES 
+        puts "\nThere are #{treasures.size} treasures to be found:\n"
+        treasures.each { |x| puts "A #{x.name} is worth #{x.points} points."}
 
         1.upto(rounds) do |round|
             puts "\nRound #{round}:" 

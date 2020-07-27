@@ -83,4 +83,4 @@ context "with a health of more than 100" do
         it "is sorted by decreasing score" do
             expect(@players.sort).to eq(@player3, @player2, @player1)
         end
-end
+    end
