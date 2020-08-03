@@ -1,0 +1,6 @@
+Knuckleheads High Scores:
+Alvin............... @{player.score}
+Berserker........... @{player.score}
+Theo................ @{player.score}
+Simon............... @{player.score}
+Klutz............... @{player.score}
