@@ -1,28 +1,52 @@
-class Player
+require_relative 'treasure_trove'
 
+class Player
     attr_accessor :name, :health, :score
     
-    def initialize(name, health=100)
+    def initialize(name, health=rand(80..100))
     @name = name.capitalize
     @health = health
+    @found_treasures = Hash.new(0)
+    end
+
+    def found_treasure(treasure)
+        @found_treasures[treasure.name] += treasure.points
+        puts "\n#{@name} found a #{treasure.name} worth #{treasure.points} points.\n"
+        puts "#{@name}'s Treasures: #{@found_treasures}\n\n"
+    end
+
+    def points
+        @found_treasures.values.reduce(0, :+)
+    end
+
+    def each_found_treasure
+        @found_treasures.each do |name, points|
+            yield Treasure.new(name, points)
+        end
     end
 
     def w00t
-        @health += 15
-        puts "#{@name} got w00ted!"
+        random_w00t = rand(1..15)
+        @health += random_w00t
+        puts "#{@name} got w00ted for #{random_w00t}!"
     end
 
     def blam
-        @health -=10
-        puts "#{@name} got blammed!"
+        random_blam = rand(10)
+        @health -= random_blam
+        puts "#{@name} got blammed for #{random_blam}!"
     end
 
     def score
-        @health + @name.length
+        @health + points
+    end
+
+    def <=>(other)
+        other.score <=> score
     end
 
     def to_s
-        "I'm #{@name} with a health of #{@health} and a score of #{score}."
+        "I'm #{@name} with a health of #{@health}, points totaling #{points} and a score of #{score}."
     end
 
     def strong?

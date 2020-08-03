@@ -16,23 +16,32 @@ describe Game do
 
     it "w00ts player if high number is rolled" do
         allow_any_instance_of(Die).to receive(:roll).and_return(5)
-        @game.play
+        @game.play(2)
         
-        expect(@player.health).to eq(@initial_health + 15)
+        expect(@player.health).to eq(@initial_health + (15 * 2))
     end
 
     it "skips player if medium number is rolled" do
         allow_any_instance_of(Die).to receive(:roll).and_return(3)
-        @game.play
+        @game.play(2)
 
         expect(@player.health).to eq(@initial_health)
     end
     
     it "blams player if low number is rolled" do
         allow_any_instance_of(Die).to receive(:roll).and_return(1)
-        @game.play
+        @game.play(2)
         
-        expect(@player.health).to eq(@initial_health - 10)
+        expect(@player.health).to eq(@initial_health - (10 * 2))
+    end
+
+    it "assigns a treasure for points during a player's turn" do
+        game = Game.new("Knuckleheads")
+        player = Player.new("moe", 100)
+        game.add_player(player)
+        game.play(1)
+
+        expect(@player.points).not_to be_zero
     end
 
     
